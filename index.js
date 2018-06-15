@@ -1,5 +1,6 @@
 'use strict';
 
+//our global store object which contains our data
 const STORE = {
     items: [
     {id: cuid(), name: 'apples', checked: false},
@@ -12,6 +13,8 @@ const STORE = {
 
 };
 
+
+//method for generating shopping items in the DOM, used by render function
 function generateItemElement(item) {
     return `
     <li class="js-item-index-element" data-item-id="${item.id}">
@@ -35,12 +38,12 @@ function generateShoppingItemsString(shoppingList) {
     return items.join('');
 }
 
-
+//render DOM state 
 function renderShoppingList() {
     // Make a copy of STORE.items to manipulate for displaying
     let filteredItems = [ ...STORE.items ];
   
-    // Check STORE.sortBy to determine how to order filteredItems
+    // Check checkbox property, create new filtered array with only unchecked items 
     if (STORE.checkBox === true) {
         //filteredItems.sort((a, b) => a.name > b.name);
          filteredItems = filteredItems.filter(obj => {
