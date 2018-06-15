@@ -59,3 +59,14 @@ form{
 
 }
 
+.edit {
+  float: left;
+  background: url(https://devdojo.com/go/examples/jquery-easy-editable-text-fields/images/edit.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-size:20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
