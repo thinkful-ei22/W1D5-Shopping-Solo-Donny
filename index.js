@@ -23,7 +23,7 @@ const STORE = {
 function generateItemElement(item) {
   return `
     <li class="js-item-index-element" data-item-id="${item.id}">
-      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name} <div class='edit'></div></span>
+      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name} <div class='edit'></div><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
             <span class="button-label">check</span>
@@ -99,8 +99,7 @@ function handleItemSearch(){
 //search method
 function searchItemInShoppingList(itemName){
   // STORE.searchResults.push(STORE.items.find(i => i.name === itemName ));
-  //filters items : searching if the item name includes the passed argument search string
-  let newArray = STORE.items.filter(i => i.name.includes(itemName));
+  let newArray = STORE.items.filter(i => i.name.toLowerCase().includes(itemName.toLowerCase()));
   STORE.searchResults = [ ...newArray ];
   console.log(newArray);
   //STORE.search=true;
@@ -124,6 +123,14 @@ function getItemIdFromElement(item) {
     .closest('.js-item-index-element')
     .data('item-id');
 }
+
+//get name from item
+function getItemIdFromElement(item) {
+  return $(item)
+    .closest('.js-item-index-element')
+    .data('item-id');
+}
+
 
 //function returns ID of item in object array
 function findItemById(id) {
@@ -151,14 +158,40 @@ function handleItemCheckClicked() {
 }
 
 
-//Handler to trigger item edit mode
+//Handler to trigger item edit mode via clicking on the edit icon
 function handleEditItemClick(){
   $('.js-shopping-list').on('click', '.edit', event => {
     console.log('`handleEditItemClick` ran');
-       
+    //show text input field to user and hide edit icon
+    $(event.currentTarget).hide();
+    $(event.currentTarget).next().show();
+    $(event.currentTarget).next().select();
+    console.log(event.currentTarget);
+
+
   });
 
 }
+
+//event handler for the name edit input field that appears when you click on the edit icon
+function handleItemRenameSubmit(){
+  $('.js-shopping-list').on('blur', '.edit-item-input', event => {
+       
+    console.log(event.currentTarget);
+    //use getter method to grab object via ID
+    let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
+    targetObject.name = event.currentTarget.value;
+    //change object name to input value
+    console.log(event.currentTarget.value);
+    console.log(targetObject);
+   
+    //rendering....
+    renderShoppingList();
+
+
+  });
+}
+
 
 // name says it all. responsible for deleting a list item.
 function deleteListItem(itemId) {
@@ -205,6 +238,7 @@ function handleShoppingList() {
   handleChangeSortBy();
   handleItemSearch();
   handleEditItemClick();
+  handleItemRenameSubmit();
 }
 
 // when the page loads, call `handleShoppingList`
