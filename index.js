@@ -4,12 +4,14 @@
 const STORE = {
   items: [
     {id: cuid(), name: 'cheetos', checked: true,found:false},
-    {id: cuid(), name: 'fruit roll up', checked: true,found:false},
+    {id: cuid(), name: 'fruit roll up', checked: false,found:false},
+    {id: cuid(), name: 'fruits extreme', checked: false,found:false},
+    {id: cuid(), name: 'potato chip', checked: false,found:false},
     {id: cuid(), name: 'oranges', checked: false,found:false},
     {id: cuid(), name: 'juice', checked: true,found:false},
-    {id: cuid(), name: 'bread', checked: false,found:false},
+    {id: cuid(), name: 'bread', checked: true,found:false},
     {id: cuid(), name: 'potato', checked: false,found:false},
-    {id: cuid(), name: 'asparagus', checked: false,found:false}
+    {id: cuid(), name: 'asparagus', checked: true,found:false}
   ],
   checkBox: false,
   search:false,
