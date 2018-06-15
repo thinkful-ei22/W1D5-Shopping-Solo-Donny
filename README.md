@@ -6,9 +6,10 @@ Implement the following features which will require a more complex store object:
 IMPLEMENTED:
 * User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
 * User can type in a search term and the displayed list will be filtered by item names only containing that search term
+* User can edit the title of an item
 
 TO DO:
-* User can edit the title of an item
+* Refactor Code/add keyboard press to edit function
 
 PREVIEW:
 https://htmlpreview.github.io/?https://github.com/thinkful-ei22/W1D5-Shopping-Solo-Donny/blob/master/index.html
