@@ -9,7 +9,7 @@ IMPLEMENTED:
 * User can edit the title of an item
 
 TO DO:
-* Refactor Code/add keyboard press to edit function
+* Clean, Comment, Refactor Code/add Keyboard Press to edit function so when you press enter it accepts the new input
 
 PREVIEW:
 https://htmlpreview.github.io/?https://github.com/thinkful-ei22/W1D5-Shopping-Solo-Donny/blob/master/index.html
