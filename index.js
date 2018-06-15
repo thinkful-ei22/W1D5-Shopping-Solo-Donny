@@ -99,7 +99,7 @@ function handleItemSearch(){
 //search method
 function searchItemInShoppingList(itemName){
   // STORE.searchResults.push(STORE.items.find(i => i.name === itemName ));
-  let newArray = STORE.items.filter(i => i.name === itemName );
+  let newArray = STORE.items.filter(i => i.name.includes(itemName);
   STORE.searchResults = [ ...newArray ];
   console.log(newArray);
   //STORE.search=true;
