@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 * {
   box-sizing: border-box;
 }
@@ -17,7 +18,12 @@ button:hover {
 .hidden {
   display: none;
 }
+.checkbox{
 
+  margin-top:20px;
+ height:30px;
+  border-bottom:1px dotted grey;
+}
 #shopping-list-item {
   width: 250px;
 }
@@ -34,21 +40,29 @@ button:hover {
 
 .shopping-list > li {
   margin-bottom: 20px;
-  border: 1px solid grey;
+  border-bottom: 1px solid grey;
   padding: 20px;
 }
 
 .shopping-item {
   display: block;
-  color: grey;
-
-  font-size: 20px;
+  font-size: 30px;
   margin-bottom: 15px;
 }
 
 .shopping-item__checked {
   text-decoration: line-through;
 }
+
+.shopping-item-controls{
+
+  display:inline-block;
+
+  position:absolute;
+  right:20px;
+  transform:translateY(-45px);
+  }
+  
 
 form{
   margin:10px 0px;
@@ -66,11 +80,14 @@ form{
   display: block;
   background-size:20px;
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 
-
+.js-item-index-element{
+  position:relative;
+ 
+}
 .edit-item-input{
   margin-top:8px;
 	font-size:18px;
@@ -80,4 +97,9 @@ form{
 	-border-radius: 2px;
 	display:none;
 	width:280px;
+}
+
+h1{
+
+
 }

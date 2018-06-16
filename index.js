@@ -3,13 +3,14 @@
 //our global store object which contains our data
 const STORE = {
   items: [
-    {id: cuid(), name: 'cheetos', checked: true,found:false},
+    {id: cuid(), name: 'nice bananas', checked: false,found:false},
+    {id: cuid(), name: 'extreme cheetos', checked: false,found:false},
     {id: cuid(), name: 'fruit roll up', checked: true,found:false},
-    {id: cuid(), name: 'oranges', checked: false,found:false},
-    {id: cuid(), name: 'juice', checked: true,found:false},
-    {id: cuid(), name: 'bread', checked: false,found:false},
+    {id: cuid(), name: 'orangina', checked: false,found:false},
+    {id: cuid(), name: 'potato chip', checked: true,found:false},
+    {id: cuid(), name: 'bread', checked: true,found:false},
     {id: cuid(), name: 'potato', checked: false,found:false},
-    {id: cuid(), name: 'asparagus', checked: false,found:false}
+    {id: cuid(), name: 'asparagus', checked: true,found:false}
   ],
   checkBox: false,
   filter:'',
@@ -35,10 +36,11 @@ function generateItemElement(item) {
       <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}"><span>${item.name}</span> <span class='edit'><i class="fas fa-edit"></i></span><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
-            <span class="button-label">check</span>
+            <span class="button-label"><i class="far fa-check-square"></i></span>
         </button>
         <button class="shopping-item-delete js-item-delete">
-            <span class="button-label">delete</span>
+            <span class="button-label"><i class="fas fa-trash-alt"></i>
+            </span>
         </button>
        
       </div>
