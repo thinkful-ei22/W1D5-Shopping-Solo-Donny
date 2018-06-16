@@ -32,7 +32,7 @@ function renderShoppingList() {
 function generateItemElement(item) {
   return `
     <li class="js-item-index-element" data-item-id="${item.id}">
-      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name} <div class='edit'><i class="fas fa-edit"></i></div><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
+      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}"><span>${item.name}</span> <span class='edit'><i class="fas fa-edit"></i></span><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
             <span class="button-label">check</span>
@@ -176,7 +176,8 @@ function handleEditItemClick(){
     console.log('`handleEditItemClick` ran');
     //bypassing global render state using the following methods because these are unrelated to global data state; simply shows the edit field to the user so they can change name
     $(event.currentTarget).hide();
-    $(event.currentTarget).next().show();
+    $(event.currentTarget).prev().hide(); //hide previous element
+    $(event.currentTarget).next().show();  //show next element
     $(event.currentTarget).next().select();
     console.log(event.currentTarget);
 
