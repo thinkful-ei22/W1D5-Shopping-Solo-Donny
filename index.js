@@ -3,15 +3,15 @@
 //our global store object which contains our data
 const STORE = {
   items: [
-    {id: cuid(), name: 'cheetos', checked: true,found:false},
-    {id: cuid(), name: 'fruit roll up', checked: false,found:false},
-    {id: cuid(), name: 'fruits extreme', checked: false,found:false},
-    {id: cuid(), name: 'potato chip', checked: false,found:false},
-    {id: cuid(), name: 'oranges', checked: false,found:false},
-    {id: cuid(), name: 'juice', checked: true,found:false},
-    {id: cuid(), name: 'bread', checked: true,found:false},
-    {id: cuid(), name: 'potato', checked: false,found:false},
-    {id: cuid(), name: 'asparagus', checked: true,found:false}
+    {id: cuid(), name: 'cheetos', checked: true},
+    {id: cuid(), name: 'fruit roll up', checked: false},
+    {id: cuid(), name: 'fruits extreme', checked: false},
+    {id: cuid(), name: 'potato chip', checked: false},
+    {id: cuid(), name: 'oranges', checked: false},
+    {id: cuid(), name: 'juice', checked: true},
+    {id: cuid(), name: 'bread', checked: true},
+    {id: cuid(), name: 'potato', checked: false},
+    {id: cuid(), name: 'asparagus', checked: true}
   ],
   checkBox: false,
   search:false,
@@ -38,27 +38,24 @@ function generateItemElement(item) {
     </li>`;
 }
 
-
+//string theory
 function generateShoppingItemsString(shoppingList) {
   console.log('Generating shopping list element');
   const items = shoppingList.map((item) => generateItemElement(item));
   return items.join('');
 }
 
-//render DOM state 
+//render DOM state
 function renderShoppingList(renderItems=STORE.items) {
   // Make a copy of STORE.items to manipulate for displaying
   let filteredItems = [ ...renderItems ];
   
   // Check checkbox property, create new filtered array with only unchecked items 
   if (STORE.checkBox === true) {
-    //filteredItems.sort((a, b) => a.name > b.name);
     filteredItems = filteredItems.filter(obj => {
       return obj.checked !== true;
-      
     });
   } 
-  
   // render the shopping list in the DOM
   console.log('`renderShoppingList` ran');
   // We're now generating HTML from the filteredItems and not the persistent STORE.items
@@ -100,13 +97,12 @@ function handleItemSearch(){
 
 //search method
 function searchItemInShoppingList(itemName){
-  // STORE.searchResults.push(STORE.items.find(i => i.name === itemName ));
-  let newArray = STORE.items.filter(i => i.name.toLowerCase().includes(itemName.toLowerCase()));
-  STORE.searchResults = [ ...newArray ];
-  console.log(newArray);
-  //STORE.search=true;
+
+  let searchArray = STORE.items.filter(i => i.name.toLowerCase().includes(itemName.toLowerCase()));
+  //STORE.searchResults = [ ...newArray ];
+  console.log(searchArray);
   if(itemName !== ''){
-    renderShoppingList(newArray);
+    renderShoppingList(searchArray); //pass to render function
   } else{
     renderShoppingList();
   }
@@ -120,13 +116,6 @@ function toggleCheckedForListItem(itemId) {
 
 
 //get ID from item
-function getItemIdFromElement(item) {
-  return $(item)
-    .closest('.js-item-index-element')
-    .data('item-id');
-}
-
-//get name from item
 function getItemIdFromElement(item) {
   return $(item)
     .closest('.js-item-index-element')
@@ -165,6 +154,7 @@ function handleEditItemClick(){
   $('.js-shopping-list').on('click', '.edit', event => {
     console.log('`handleEditItemClick` ran');
     //show text input field to user and hide edit icon
+    //using dom manipulation not via render method because this has no bearing on data, just shows the edit field
     $(event.currentTarget).hide();
     $(event.currentTarget).next().show();
     $(event.currentTarget).next().select();
@@ -218,6 +208,8 @@ function changeCheckBoxState() {
   STORE.checkBox = !STORE.checkBox;
 }
 
+
+//unused, will be reimplemented to sort
 function handleChangeSortBy() {
   $('#js-shopping-list-sortby').change(e => {
     const sortBy = e.target.value;
