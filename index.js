@@ -32,7 +32,7 @@ function renderShoppingList() {
 function generateItemElement(item) {
   return `
     <li class="js-item-index-element" data-item-id="${item.id}">
-      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name} <div class='edit'></div><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
+      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name} <div class='edit'><i class="fas fa-edit"></i></div><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
             <span class="button-label">check</span>
