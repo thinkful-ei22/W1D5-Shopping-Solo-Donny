@@ -8,8 +8,8 @@ const STORE = {
     {id: cuid(), name: 'fruit roll up', checked: true},
     {id: cuid(), name: 'Mountain Dew', checked: false},
     {id: cuid(), name: 'potato chip', checked: true},
-    {id: cuid(), name: 'Cool Ranch', checked: true},
-    {id: cuid(), name: 'potato', checked: false},
+    {id: cuid(), name: 'Cool Ranch', checked: false},
+    {id: cuid(), name: 'Ranch', checked: false},
     {id: cuid(), name: 'asparagus', checked: true}
   ],
   checkBox: false,
@@ -138,8 +138,11 @@ function handleNewItemSubmit() {
 
 //event handler for searching for item in our STORE via input form
 function handleItemSearch(){
-  $('#js-shopping-list-search').on('keyup', '.js-shopping-search-entry', function(e){
+  $('#js-shopping-list-search').on('keydown', '.js-shopping-search-entry', function(e){
     // event.preventDefault();
+    if(event.keyCode == 13) {
+      event.preventDefault();  // if enter key pressed prevent input submission default behavior
+    }
     const filter = $('.js-shopping-search-entry').val();
     console.log(filter);
     setStoreFilter(filter);
