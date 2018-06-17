@@ -19,21 +19,12 @@ const STORE = {
 
 };
 
-//RENDERING
-function renderShoppingList() {
-  // render the shopping list in the DOM
-  console.log('`renderShoppingList` ran');
-  const shoppingListItemsString = generateShoppingItemsString(STORE.items);
-  // insert that HTML into the DOM
-  $('.js-shopping-list').html(shoppingListItemsString);
-}
-
 
 //method for generating individual shopping items in the DOM, used by render function and generateshoppinglistitemsstring method
 function generateItemElement(item) {
   return `
     <li class="js-item-index-element" data-item-id="${item.id}">
-      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}"><span>${item.name}</span> <span class='edit'><i class="fas fa-edit"></i></span><input class='edit-item-input' type="text" value="Edit Your Item Name" /></span>
+      <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}"><span>${item.name}</span> <span class='edit'><i class="fas fa-edit"></i></span><input class='edit-item-input' type="text" value="${item.name}" /></span>
       <div class="shopping-item-controls">
         <button class="shopping-item-toggle js-item-toggle">
             <span class="button-label"><i class="far fa-check-square"></i></span>
@@ -104,12 +95,6 @@ function getItemIdFromElement(item) {
     .data('item-id');
 }
 
-//get name from item
-function getItemIdFromElement(item) {
-  return $(item)
-    .closest('.js-item-index-element')
-    .data('item-id');
-}
 
 //function returns ID of item in object array
 function findItemById(id) {
@@ -188,10 +173,20 @@ function handleEditItemClick(){
 
 }
 
-//event handler for searching for item in our STORE via input form
+//event handler for renaming item
 function handleItemRenameSubmit(){
+  // mouse click outside input (blur or lose focus) will trigger this
   $('.js-shopping-list').on('blur', '.edit-item-input', event => {
-       
+    
+    //if blank input then use default value
+    let thisItem = event.currentTarget;
+    if ($.trim(thisItem.value) == ''){
+      thisItem.value = (thisItem.defaultValue ? thisItem.defaultValue : '');
+    }
+    else{
+      $(thisItem).prev().prev().html(thisItem.value);
+    }
+    
     console.log(event.currentTarget);
     let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
     targetObject.name = event.currentTarget.value;
@@ -202,6 +197,32 @@ function handleItemRenameSubmit(){
 
 
   });
+
+  $('.js-shopping-list').on('keydown', '.edit-item-input', event => {
+    if (event.keyCode == '13') {  //if enter key is pressed
+      
+      //if blank input then use default value
+      let thisItem = event.currentTarget;
+      if ($.trim(thisItem.value) == ''){
+        thisItem.value = (thisItem.defaultValue ? thisItem.defaultValue : '');
+      }
+      else{
+        $(thisItem).prev().prev().html(thisItem.value);
+      }
+      
+      console.log(event.currentTarget);
+      let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
+      targetObject.name = event.currentTarget.value;
+      console.log(event.currentTarget.value);
+      console.log(targetObject);
+    
+      renderShoppingList();
+    }
+
+  });
+
+
+
 }
 
 //delete button handler
@@ -216,6 +237,15 @@ function handleDeleteItemClicked() {
   });
 }
 
+
+//RENDERING
+function renderShoppingList() {
+  // render the shopping list in the DOM
+  console.log('`renderShoppingList` ran');
+  const shoppingListItemsString = generateShoppingItemsString(STORE.items);
+  // insert that HTML into the DOM
+  $('.js-shopping-list').html(shoppingListItemsString);
+}
 
 
 
