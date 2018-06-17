@@ -9,7 +9,7 @@ IMPLEMENTED:
 * User can edit the title of an item
 
 TO DO:
-* Clean, Comment, Refactor Code/add Keyboard Press to edit function so when you press enter it accepts the new input
+* Clean, Comment, Refactor Code
 * big old doinks in Amish
 
 PREVIEW:
