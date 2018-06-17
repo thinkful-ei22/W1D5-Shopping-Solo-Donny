@@ -6,9 +6,9 @@ const STORE = {
     {id: cuid(), name: 'nice bananas', checked: false},
     {id: cuid(), name: 'extreme cheetos', checked: false},
     {id: cuid(), name: 'fruit roll up', checked: true},
-    {id: cuid(), name: 'orangina', checked: false},
+    {id: cuid(), name: 'Mountain Dew', checked: false},
     {id: cuid(), name: 'potato chip', checked: true},
-    {id: cuid(), name: 'bread', checked: true},
+    {id: cuid(), name: 'Cool Ranch', checked: true},
     {id: cuid(), name: 'potato', checked: false},
     {id: cuid(), name: 'asparagus', checked: true}
   ],
@@ -181,11 +181,11 @@ function handleItemRenameSubmit(){
     
     //if blank input then use default value
     let thisItem = event.currentTarget;
-    if ($.trim(thisItem.value) == ''){
+    if ($.trim(thisItem.value) === ''){
       thisItem.value = (thisItem.defaultValue ? thisItem.defaultValue : '');
     }
     
-    
+  
     //console.log(event.currentTarget);
     let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
     targetObject.name = event.currentTarget.value;
@@ -198,7 +198,7 @@ function handleItemRenameSubmit(){
   });
 
   $('.js-shopping-list').on('keydown', '.edit-item-input', event => {
-    if (event.keyCode === '13') {  //if enter key is pressed
+    if (event.keyCode == '13') {  //if enter key is pressed
       
       //if blank input then use default value
       let thisItem = event.currentTarget;
