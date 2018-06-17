@@ -138,16 +138,18 @@ function handleNewItemSubmit() {
 
 //event handler for searching for item in our STORE via input form
 function handleItemSearch(){
-  $('#js-shopping-list-search').on('keydown', '.js-shopping-search-entry', function(e){
+  $('#js-shopping-list-search').on('keyup', '.js-shopping-search-entry', function(e){
     // event.preventDefault();
-    if(event.keyCode == 13) {
-      event.preventDefault();  // if enter key pressed prevent input submission default behavior
-    }
     const filter = $('.js-shopping-search-entry').val();
     console.log(filter);
     setStoreFilter(filter);
     renderShoppingList();
 
+  });
+  $('#js-shopping-list-search').on('keypress', '.js-shopping-search-entry', function(e){
+    if(event.keyCode == 13) {
+      event.preventDefault();  // if enter key pressed prevent input submission default behavior
+    }
   });
 }
 
