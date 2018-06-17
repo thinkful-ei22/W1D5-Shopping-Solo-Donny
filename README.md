@@ -11,6 +11,7 @@ IMPLEMENTED:
 TO DO:
 * Clean, Comment, Refactor Code
 * big old doinks in Amish
+* make it extreme shopping
 
 PREVIEW:
 https://htmlpreview.github.io/?https://github.com/thinkful-ei22/W1D5-Shopping-Solo-Donny/blob/master/index.html
