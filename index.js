@@ -3,14 +3,14 @@
 //our global store object which contains our data
 const STORE = {
   items: [
-    {id: cuid(), name: 'nice bananas', checked: false,found:false},
-    {id: cuid(), name: 'extreme cheetos', checked: false,found:false},
-    {id: cuid(), name: 'fruit roll up', checked: true,found:false},
-    {id: cuid(), name: 'orangina', checked: false,found:false},
-    {id: cuid(), name: 'potato chip', checked: true,found:false},
-    {id: cuid(), name: 'bread', checked: true,found:false},
-    {id: cuid(), name: 'potato', checked: false,found:false},
-    {id: cuid(), name: 'asparagus', checked: true,found:false}
+    {id: cuid(), name: 'nice bananas', checked: false},
+    {id: cuid(), name: 'extreme cheetos', checked: false},
+    {id: cuid(), name: 'fruit roll up', checked: true},
+    {id: cuid(), name: 'orangina', checked: false},
+    {id: cuid(), name: 'potato chip', checked: true},
+    {id: cuid(), name: 'bread', checked: true},
+    {id: cuid(), name: 'potato', checked: false},
+    {id: cuid(), name: 'asparagus', checked: true}
   ],
   checkBox: false,
   filter:'',
@@ -18,7 +18,6 @@ const STORE = {
     
 
 };
-
 
 //method for generating individual shopping items in the DOM, used by render function and generateshoppinglistitemsstring method
 function generateItemElement(item) {
@@ -129,9 +128,11 @@ function handleNewItemSubmit() {
     event.preventDefault();  //prevent default form input processing
     console.log('`handleNewItemSubmit` ran');
     const newItemName = $('.js-shopping-list-entry').val();
-    $('.js-shopping-list-entry').val('');
-    addItemToShoppingList(newItemName);
-    renderShoppingList();
+    if( $.trim(newItemName) !== ''){   //if value is not empty
+      $('.js-shopping-list-entry').val('');
+      addItemToShoppingList(newItemName);
+      renderShoppingList();
+    } 
   });
 }
 
@@ -165,7 +166,7 @@ function handleEditItemClick(){
     $(event.currentTarget).hide();
     $(event.currentTarget).prev().hide(); //hide previous element
     $(event.currentTarget).next().show();  //show next element
-    $(event.currentTarget).next().select();
+    $(event.currentTarget).next().select(); //selects text in input
     console.log(event.currentTarget);
 
 
@@ -183,15 +184,13 @@ function handleItemRenameSubmit(){
     if ($.trim(thisItem.value) == ''){
       thisItem.value = (thisItem.defaultValue ? thisItem.defaultValue : '');
     }
-    else{
-      $(thisItem).prev().prev().html(thisItem.value);
-    }
     
-    console.log(event.currentTarget);
+    
+    //console.log(event.currentTarget);
     let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
     targetObject.name = event.currentTarget.value;
-    console.log(event.currentTarget.value);
-    console.log(targetObject);
+    //console.log(event.currentTarget.value);
+    //console.log(targetObject);
    
     renderShoppingList();
 
@@ -199,22 +198,19 @@ function handleItemRenameSubmit(){
   });
 
   $('.js-shopping-list').on('keydown', '.edit-item-input', event => {
-    if (event.keyCode == '13') {  //if enter key is pressed
+    if (event.keyCode === '13') {  //if enter key is pressed
       
       //if blank input then use default value
       let thisItem = event.currentTarget;
-      if ($.trim(thisItem.value) == ''){
+      if ($.trim(thisItem.value) === ''){  //if empty space (trim removes extra)
         thisItem.value = (thisItem.defaultValue ? thisItem.defaultValue : '');
       }
-      else{
-        $(thisItem).prev().prev().html(thisItem.value);
-      }
       
-      console.log(event.currentTarget);
+      //console.log(event.currentTarget);
       let targetObject = findItemById(getItemIdFromElement(event.currentTarget));
       targetObject.name = event.currentTarget.value;
-      console.log(event.currentTarget.value);
-      console.log(targetObject);
+      //console.log(event.currentTarget.value);
+      //console.log(targetObject);
     
       renderShoppingList();
     }
