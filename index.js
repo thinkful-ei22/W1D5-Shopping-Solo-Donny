@@ -41,7 +41,7 @@ function generateItemElement(item) {
 //method for generating the shopping list
 function generateShoppingItemsString(shoppingList) {
   console.log('Generating shopping list element');
-  var filterList = filterItemsArrayByTerm(shoppingList, STORE.filter);
+  let filterList = filterItemsArrayByTerm(shoppingList, STORE.filter);
   filterList = filterItemsArrayByChecked(filterList);
   const items = filterList.map((item) => generateItemElement(item));
   return items.join('');
@@ -95,7 +95,7 @@ function getItemIdFromElement(item) {
 }
 
 
-//function returns ID of item in object array
+//function returns item given ID in the STORE object item array
 function findItemById(id) {
   return STORE.items.find(i => i.id === id);
 }
@@ -141,7 +141,7 @@ function handleItemSearch(){
   $('#js-shopping-list-search').on('keyup', '.js-shopping-search-entry', function(e){
     // event.preventDefault();
     const filter = $('.js-shopping-search-entry').val();
-    console.log(filter);
+   // console.log(filter);
     setStoreFilter(filter);
     renderShoppingList();
 
